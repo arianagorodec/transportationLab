@@ -1,0 +1,344 @@
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Roboto Slab', serif;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    margin-bottom: 1.1em;
+}
+
+.prefooter .container-fluid
+{
+    padding-top: 3.3em;
+    padding-bottom: 4.2em;
+}
+
+span.typcn::before, i.typcn::before
+{
+    font-size: 2em;
+}
+
+span.x2:before, i.x2:before
+{
+    font-size: 3.4em;
+}
+
+span.x3:before, i.x3:before
+{
+    font-size: 4.4em;
+}
+
+span.x4:before, i.x4:before
+{
+    font-size: 6em;
+}
+
+
+header .container-fluid
+{
+    background-image: url('https://static.eastlines.ru/images/pics/video-poster.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    padding-top: 36px;
+}
+
+.hamburger
+{
+    font-size: 2.3em;
+    color: #FFF;
+}
+
+.hamburger:hover
+{
+  color: #000;
+  cursor: pointer;
+}
+
+
+.logo
+{
+    background: none;
+    border: 0px;
+}
+
+.jumbotron
+{
+    background: none;
+    text-align: center;
+}
+
+.jumbotron h1,
+.jumbotron h2,
+.jumbotron h3,
+.jumbotron h4,
+.jumbotron h5,
+.jumbotron h6,
+.jumbotron small
+{
+    color: #000;
+}
+
+.jumbotron p
+{
+    color: #000;
+    margin-bottom: 5%;
+}
+
+
+/*------------------------------------*\
+	SECTIONS
+\*------------------------------------*/
+
+.number .container-fluid
+{
+    background-image: url('https://logistics.edu.sg/wp-content/uploads/2019/01/Sea-Port-Cargo-at-Sunset-view-LIS.jpg') no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.opaline
+{
+    padding-top: 3em;
+    padding-bottom: 3em;
+    background-color: rgba(255, 0, 0, 0.660);
+}
+
+.opaline h1,
+.opaline h2,
+.opaline h3,
+.opaline h4,
+.opaline h5,
+.opaline h6,
+.opaline p
+{
+    color: #FFFFFF;
+}
+
+.opaline .boxes
+{
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    border: 1px solid #FFF;
+}
+
+.boxes .odometer.odometer-theme-default
+{
+  font-family: 'Roboto Slab', serif;
+}
+
+.prefooter .container-fluid
+{
+    background: linear-gradient(
+      rgba(33, 37, 43, 0.6),
+      rgba(33, 37, 43, 0.6)
+    ),
+
+    url(https://prolog-ffc.com.ua/templates/qdesign/images/map_europe.png) ;
+
+}
+
+.prefooter h1,
+.prefooter h2,
+.prefooter h3,
+.prefooter h5,
+.prefooter h6,
+.prefooter p
+{
+    color: #FFFFFF;
+}
+.prefooter h4{
+    color: #555555;
+}
+
+footer
+{
+    background-color: rgba(36, 50, 59, 1);
+    padding-top: 2em;
+    padding-bottom: 1.2em;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6,
+footer p
+{
+    color: #FFFFFF;
+}
+
+.social
+{
+    padding-top: 50px;
+}
+input[type=text], input[type=password], select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+        height: 59px;
+}
+
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 10%;
+    border-radius: 20%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-left: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+.btn_s1{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 1.428571429;
+    border-radius: 0px;
+}
+
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+.col-md-6 {
+    width: 60%;
+}
+.col-md-8,.col-md-4,.col-md-5,.col-md-6 {
+    padding-left: 0px;
+}
+.modal-content{
+    width: 33%;
+}
+
+.thead-light{
+    background-color: #4CAF50;
+}
+ tbody{
+    background-color: white;
+ }
+ p {
+    margin: -18px 0 11px;
+}
+
+#id05 .modal-content {
+    width: 53%;
+    height: 110%;
+}
+#id05 .row {
+    margin-left: 44px;
+    margin-right: 68px;
+}
+
+ td button {
+    margin: 0;
+    padding: 0;
+ }
+ 
+ .selected {
+    margin-bottom: 3px;
+ }
