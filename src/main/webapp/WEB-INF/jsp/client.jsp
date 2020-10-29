@@ -17,7 +17,7 @@
     <meta name="author" content="">
     <title>УЦП</title>
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/theme.css" rel="stylesheet">
+    <link href="${contextPath}/resources/bootstrap/css/theme.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
@@ -233,7 +233,7 @@
 <script src="${contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-scrollspy.js"></script>
 <script src="${contextPath}/resources/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="${contextPath}/resources/http://masonry.desandro.com/masonry.pkgd.js"></script>
+<script src="http://masonry.desandro.com/masonry.pkgd.js"></script>
 <script src="${contextPath}/resources/assets/js/masonry.js"></script>
 <script src="${contextPath}/resources/assets/js/pushy.min.js"></script>
 <script src="${contextPath}/resources/assets/js/jquery.magnific-popup.min.js"></script>

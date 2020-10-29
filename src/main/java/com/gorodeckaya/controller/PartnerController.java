@@ -49,9 +49,7 @@ public class PartnerController {
                 routeList.add(distRoutes);
             }
         }
-        for (DistRoutes d: routeList ) {
-            System.out.println(d);
-        }
+
         model.addAttribute("distRoutes",  routeList);
         return "partner";
     }
