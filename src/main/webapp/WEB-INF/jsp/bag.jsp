@@ -43,7 +43,49 @@
                     </select>
                     <button type="submit">Получить результат</button>
                 </form>
-                <p>${result}</p>
+                    <% if (request.getAttribute("check").equals(1)) {%>
+                    <div>
+                        <h3>Результат</h3>
+                        <h3>Максимальная прибыль: ${maxPrice}</h3>
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Маршрут</th>
+                                <th scope="col">Адрес отправления</th>
+                                <th scope="col">Адрес прибытия</th>
+                                <th scope="col">Транспорт</th>
+                                <th scope="col">Размер груза</th>
+                                <th scope="col">Вес груза</th>
+                                <th scope="col">Время</th>
+                                <th scope="col">Цена</th>
+                                <th scope="col">Тип груза</th>
+                                <th scope="col">ФИО клиента</th>
+                                <th scope="col">Номер телефона клиента</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${result}" var = "resDeal" >
+                                <tr>
+                                    <td>${resDeal.id}</td>
+                                    <td>${resDeal.distRoutes.route.from}-${resDeal.distRoutes.cities}-${resDeal.distRoutes.route.to}</td>
+                                    <td>${resDeal.address_from}</td>
+                                    <td>${resDeal.address_to}</td>
+                                    <td>${resDeal.distRoutes.typeTransportation.type}</td>
+                                    <td>${resDeal.size}</td>
+                                    <td>${resDeal.weight}</td>
+                                    <td>${resDeal.time}</td>
+                                    <td>${resDeal.price}</td>
+                                    <td>${resDeal.type_goods}</td>
+                                    <td>${resDeal.client.surname} ${resDeal.client.name}</td>
+                                    <td>${resDeal.client.mobphone}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% }%>
                 <p style="display: none">${check}</p>
                 <% if (request.getAttribute("check").equals(1)) {%>
                 <div>

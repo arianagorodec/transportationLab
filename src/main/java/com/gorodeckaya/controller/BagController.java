@@ -1,9 +1,13 @@
 package com.gorodeckaya.controller;
 
+import com.gorodeckaya.entity.Backpack;
 import com.gorodeckaya.entity.Deal;
 import com.gorodeckaya.entity.Partner;
 import com.gorodeckaya.service.impl.DealServiceImpl;
 import com.gorodeckaya.service.impl.PartnerServiceImpl;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,54 +38,66 @@ public class BagController {
 //        int result = getMaxWeight(Integer.parseInt(weightC), weightCargo);
         String[] route = fromTo.split("-");
         Partner partner = partnerService.getInfoPartner();
-        Deal deal = new Deal();
         List<Deal> deals = dealService.getAllByPartnerAndFromTo(partner.getId(),route[0],route[1]);
+        List<Deal> result = calculate(deals);
+
         model.addAttribute("check", 1);
         model.addAttribute("deals", dealService.getAllDistinctByPartner(partner.getId()));
-        model.addAttribute("result", deal);
+        model.addAttribute("maxPrice", maxPrice(result));
+        model.addAttribute("result", result);
         model.addAttribute("allDeals", deals);
         return "bag";
     }
 
-    /*
-Задача на программирование: рюкзак без повторов
-Первая строка входа содержит целые числа
-    1<=W<=100000     вместимость рюкзака
-    1<=n<=300        число золотых слитков
-                    (каждый можно использовать только один раз).
-Следующая строка содержит n целых чисел, задающих веса каждого из слитков:
-  0<=w[1]<=100000 ,..., 0<=w[n]<=100000
-Найдите методами динамического программирования
-максимальный вес золота, который можно унести в рюкзаке.
-Sample Input:
-10 3
-1 4 8
-Sample Output:
-9
-*/
-
-    private static int calculate(int[] weights, int neededWeight) {
-        int n = weights.length;
-        int[][] dp = new int[(int) (neededWeight + 1)][n + 1];
-        for (int j = 1; j <= n; j++) {
-            for (int w = 1; w <= neededWeight; w++) {
-                if (weights[j - 1] <= w) {
-                    dp[w][j] = Math.max(dp[w][j - 1], dp[(int) (w - weights[j - 1])][j - 1]+weights[j-1]);
-                } else {
-                    dp[w][j] = dp[w][j - 1];
-                }
+    private static List<Deal> calculate(List<Deal> deals) {
+        Comparator<Deal> comparator = new Comparator<Deal>() {
+            @Override
+            public int compare(Deal deal, Deal deal1) {
+                return deal.getDistRoutes().getCities().compareTo(deal1.getDistRoutes().getCities());
+            }
+        };
+        deals.sort(comparator);
+        Deal deal = deals.get(0);
+        List<Deal> dealList = new ArrayList<>();
+        List<List<Deal>> allResultList = new ArrayList<>();
+        for (Deal i: deals) {
+            if(i.getDistRoutes().getCities().equals(deal.getDistRoutes().getCities())) {
+                dealList.add(i);
+            }
+            else {
+                Backpack backpack = new Backpack(dealList.get(0).getDistRoutes().getTypeTransportation().getWeight());
+                backpack.makeAllSets(dealList);
+                allResultList.add(backpack.GetBestSet());
+                deal = i;
+                dealList = new ArrayList<>();
+                dealList.add(i);
             }
         }
-        return dp[neededWeight][n];
+        List<Deal> resultList = maxPriceDeal(allResultList);
+        return resultList;
     }
 
-    private static int getMaxWeight(int w, String weightCargo) {
-        String[] cargo = weightCargo.split("-");
-        int[] gold=new int[cargo.length];
-        for (int i = 0; i < cargo.length; i++) {
-            gold[i]= Integer.parseInt(cargo[i]);
+    private static List<Deal> maxPriceDeal(List<List<Deal>> allResultList) {
+        List<Deal> resultList = new ArrayList<>();
+        double maxPrice = 0;
+        for (List<Deal> j: allResultList){
+            double price = 0;
+            for (Deal d: j){
+                price+=d.getPrice();
+            }
+            if(maxPrice<price) {
+                maxPrice = price;
+                resultList=j;
+            }
         }
-        return calculate(gold,w);
+        return resultList;
+    }
+    private static double maxPrice(List<Deal> resList) {
+        double maxPrice = 0;
+            for (Deal d: resList){
+                maxPrice+=d.getPrice();
+            }
+        return maxPrice;
     }
 
 
