@@ -33,7 +33,7 @@ public class BagController {
         return "bag";
     }
     @PostMapping("/bag")
-    public String calculate(@RequestParam("select_route") String fromTo,
+    public String calculates(@RequestParam("select_route") String fromTo,
                             Model model){
 //        int result = getMaxWeight(Integer.parseInt(weightC), weightCargo);
         String[] route = fromTo.split("-");
@@ -65,7 +65,8 @@ public class BagController {
                 dealList.add(i);
             }
             else {
-                Backpack backpack = new Backpack(dealList.get(0).getDistRoutes().getTypeTransportation().getWeight());
+                dealList.add(i);
+                Backpack backpack = new Backpack(deal.getDistRoutes().getTypeTransportation().getWeight());
                 backpack.makeAllSets(dealList);
                 allResultList.add(backpack.GetBestSet());
                 deal = i;

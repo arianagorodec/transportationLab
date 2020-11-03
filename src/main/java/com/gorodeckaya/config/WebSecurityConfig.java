@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/client/**").hasRole("USER")
                 .antMatchers("/partner/**","/bag/**").hasRole("PARTNER")
                 //Доступ разрешен всем пользователей
-                .antMatchers("/", "/resources/**").permitAll()
+                .antMatchers("/", "/resources/**","/client_registration","/partner_registration").permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()

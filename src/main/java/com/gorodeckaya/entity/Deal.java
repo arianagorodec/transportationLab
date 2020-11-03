@@ -44,9 +44,13 @@ public class Deal {
     @JoinColumn(name = "id_client")
     private Client client;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name="id_distroute", unique = true, nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY) //orphanRemoval=true
+    @JoinColumn(name = "id_distroute")
     private DistRoutes distRoutes;
+
+//    @OneToOne(optional = false, cascade = CascadeType.ALL)
+//    @JoinColumn(name="id_distroute", unique = false, nullable = false, updatable = false)
+//    private DistRoutes distRoutes;
 
     @Transient
     List<TransportEnum> typeTransportationList;

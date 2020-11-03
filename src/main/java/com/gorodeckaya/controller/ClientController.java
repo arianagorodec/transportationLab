@@ -63,6 +63,11 @@ public class ClientController {
         deal.setAddress_from(address_from);
         deal.setAddress_to(address_to);
         deal.setWeight(weight);
+        DistRoutes distRoutes = new DistRoutes();
+        TypeTransportation typeTransportation = new TypeTransportation();
+        typeTransportation.setType(type);
+        distRoutes.setTypeTransportation(typeTransportation);
+        deal.setDistRoutes(distRoutes);
         if(type_goods.equals("NOTHING"))
             deal.setType_goods(null);
         else
@@ -86,6 +91,9 @@ public class ClientController {
         model.addAttribute("myDeal",  deal);
         model.addAttribute("check", 1);
         model.addAttribute("deals",  deals);
+        model.addAttribute("citiesFrom",  routeService.getUniqFrom());
+        model.addAttribute("citiesTo",  routeService.getUniqTo());
+
         return "client";
     }
 
@@ -94,25 +102,27 @@ public class ClientController {
         List<Deal> deals = new ArrayList<>();
         for (Route r : routes) {
             for (DistRoutes distRoutes : r.getDistRoutes()) {
-                Deal newDeal = new Deal();
-                newDeal.setCity_from(r.getFrom());
-                newDeal.setCity_to(r.getTo());
-                newDeal.setAddress_from(deal.getAddress_from());
-                newDeal.setAddress_to(deal.getAddress_to());
-                newDeal.setSize(deal.getSize());
-                newDeal.setWeight(deal.getWeight());
-                DistRoutes newDistRoutes = new DistRoutes();
-                newDistRoutes.setId(distRoutes.getId());
-                newDistRoutes.setCities(distRoutes.getCities());
-                newDistRoutes.setTypeTransportation(distRoutes.getTypeTransportation());
-                newDistRoutes.setRoute(r);
-                newDeal.setDistRoutes(newDistRoutes);
-                if (deal.getType_goods() != null)
-                    newDeal.setPrice(distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance() + distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance() * distRoutes.getTypeTransportation().getPercent());
-                else
-                    newDeal.setPrice(distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance());
-                newDeal.setTime(distRoutes.getTypeTransportation().getTime());
-                deals.add(newDeal);
+                if(distRoutes.getTypeTransportation().getType().equals(deal.getDistRoutes().getTypeTransportation().getType())) {
+                    Deal newDeal = new Deal();
+                    newDeal.setCity_from(r.getFrom());
+                    newDeal.setCity_to(r.getTo());
+                    newDeal.setAddress_from(deal.getAddress_from());
+                    newDeal.setAddress_to(deal.getAddress_to());
+                    newDeal.setSize(deal.getSize());
+                    newDeal.setWeight(deal.getWeight());
+                    DistRoutes newDistRoutes = new DistRoutes();
+                    newDistRoutes.setId(distRoutes.getId());
+                    newDistRoutes.setCities(distRoutes.getCities());
+                    newDistRoutes.setTypeTransportation(distRoutes.getTypeTransportation());
+                    newDistRoutes.setRoute(r);
+                    newDeal.setDistRoutes(newDistRoutes);
+                    if (deal.getType_goods() != null)
+                        newDeal.setPrice(distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance() + distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance() * distRoutes.getTypeTransportation().getPercent());
+                    else
+                        newDeal.setPrice(distRoutes.getTypeTransportation().getPrice() * distRoutes.getTypeTransportation().getDistance());
+                    newDeal.setTime(distRoutes.getTypeTransportation().getTime());
+                    deals.add(newDeal);
+                }
             }
         }
         return deals;
@@ -126,10 +136,10 @@ public class ClientController {
                            @RequestParam("size") double size,
                            Model model) {
 //        System.out.println(myDeal);
-        System.out.println(id);
         DistRoutes distRoutes = distRoutesService.findDistRoutesId(id);
         Deal deal = new Deal();
-        deal.setClient(clientService.getInfoClient());
+        Client client = clientService.getInfoClient();
+        deal.setClient(client);
         deal.setDistRoutes(distRoutes);
         deal.setCity_from(distRoutes.getRoute().getFrom());
         deal.setCity_to(distRoutes.getRoute().getTo());

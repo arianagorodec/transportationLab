@@ -170,7 +170,7 @@
 
                 <div id="id04" class="modal">
 <%--                    <form class="modal-content animate" action="/action_page.php">--%>
-                    <form:form method="POST" modelAttribute="clientForm" class="modal-content animate" action="/client_registration">
+                    <form:form method="post" modelAttribute="clientForm" class="modal-content animate" action="/client_registration">
 
                         <div class="imgcontainer">
                             <img src="${contextPath}/resources/images/avatar.png" alt="Avatar" class="avatar">
@@ -204,7 +204,7 @@
                             <form:input  type="password" id="password-input" path="password"  placeholder="Введите пароль" name="password"></form:input>
                             <form:errors path="password"></form:errors>
                             <p style="color: red">${passwordError}</p>
-                            <button type="submit">Зарегистировать</button>
+                           <button type="submit">Зарегистировать</button>
                             <a href="index.jsp">Отмена</a>
                             <label>
                                 <input type="checkbox" checked="checked" name="remember"> Remember me

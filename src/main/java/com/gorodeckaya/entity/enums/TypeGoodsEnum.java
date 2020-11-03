@@ -4,7 +4,8 @@ public enum TypeGoodsEnum {
     CRUMBLY, //рассыпчатые
     FRAGILE, //хрупкий
     HEATMODE, //теплорежим
-    DANDEROUS; // опасный
+    DANDEROUS, // опасный
+    NOTHING; //ничего
 
 
     TypeGoodsEnum() {
