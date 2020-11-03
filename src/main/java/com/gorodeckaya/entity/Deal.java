@@ -43,13 +43,6 @@ public class Deal {
     @JoinColumn(name = "id_client")
     private Client client;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "Deal_TypeTransportation",
-//            joinColumns = { @JoinColumn(name = "id_deal") },
-//            inverseJoinColumns = { @JoinColumn(name = "id_TypeTransportation") }
-//    )
-//    Set<TypeTransportation> typeTransportations = new HashSet<>();
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name="id_distroute", unique = true, nullable = false, updatable = false)
     private DistRoutes distRoutes;

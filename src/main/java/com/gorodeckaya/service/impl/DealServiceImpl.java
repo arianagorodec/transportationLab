@@ -40,4 +40,13 @@ public class DealServiceImpl implements DealService {
         return dealRepository.findAll();
     }
 
+    @Override
+    public List<Deal> getAllDistinctByPartner(long id_partner) {
+        return dealRepository.findDistinctByPartner(id_partner);
+    }
+
+    @Override
+    public List<Deal> getAllByPartnerAndFromTo(long id, String s, String s1) {
+        return dealRepository.findByPartnerAndFromTo(id,s,s1);
+    }
 }

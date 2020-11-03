@@ -1,26 +1,45 @@
 package com.gorodeckaya.controller;
 
+import com.gorodeckaya.entity.Deal;
+import com.gorodeckaya.entity.Partner;
+import com.gorodeckaya.service.impl.DealServiceImpl;
+import com.gorodeckaya.service.impl.PartnerServiceImpl;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Scanner;
 
 @Controller
 public class BagController {
+    @Autowired
+    DealServiceImpl dealService;
+    @Autowired
+    PartnerServiceImpl partnerService;
     @GetMapping("/bag")
     public String bag(Model model) {
+        Partner partner = partnerService.getInfoPartner();
         model.addAttribute("result", 0);
+        model.addAttribute("deals", dealService.getAllDistinctByPartner(partner.getId()));
+        model.addAttribute("check", 0);
+        model.addAttribute("allDeals", null);
         return "bag";
     }
     @PostMapping("/bag")
-    public String calculate(@RequestParam("weightC") String weightC,
-                            @RequestParam("weightCargo") String weightCargo,
+    public String calculate(@RequestParam("select_route") String fromTo,
                             Model model){
-        int result = getMaxWeight(Integer.parseInt(weightC), weightCargo);
-        model.addAttribute("result", result);
+//        int result = getMaxWeight(Integer.parseInt(weightC), weightCargo);
+        String[] route = fromTo.split("-");
+        Partner partner = partnerService.getInfoPartner();
+        Deal deal = new Deal();
+        List<Deal> deals = dealService.getAllByPartnerAndFromTo(partner.getId(),route[0],route[1]);
+        model.addAttribute("check", 1);
+        model.addAttribute("deals", dealService.getAllDistinctByPartner(partner.getId()));
+        model.addAttribute("result", deal);
+        model.addAttribute("allDeals", deals);
         return "bag";
     }
 
