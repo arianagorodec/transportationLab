@@ -159,6 +159,7 @@
                                         <div class="row">
                                             <label for="uname"><b>Тип груза</b></label>
                                             <select name="type_goods">
+                                                <option value="NOTHING">Ничего</option>
                                                 <option value="CRUMBLY">Рассыпчатые грузы</option>
                                                 <option value="DANDEROUS">Опасные грузы</option>
                                                 <option value="HEATMODE">Необходим теплорежим</option>

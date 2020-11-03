@@ -63,7 +63,10 @@ public class ClientController {
         deal.setAddress_from(address_from);
         deal.setAddress_to(address_to);
         deal.setWeight(weight);
-        deal.setType_goods(type_goods);
+        if(type_goods.equals("NOTHING"))
+            deal.setType_goods(null);
+        else
+            deal.setType_goods(type_goods);
         deal.setSize(size);
         deal.setClient(clientService.getInfoClient());
         List<Deal> newdeals = findAllRoute(deal);
