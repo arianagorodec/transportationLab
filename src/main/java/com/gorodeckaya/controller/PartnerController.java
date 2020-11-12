@@ -111,22 +111,23 @@ public class PartnerController {
         distRoutesService.addDistRoutes(distRoutes);
 
         for(int i=1;i<3;i++) {
+            if(!request.getParameter("dist_city" + i).isEmpty()) {
+                typeTransportation = new TypeTransportation();
+                typeTransportation.setPrice(Double.parseDouble(request.getParameter("price" + i)));
+                typeTransportation.setTime((Double.parseDouble(request.getParameter("time" + i))));
+                typeTransportation.setPercent((Double.parseDouble(request.getParameter("percent" + i))));
+                typeTransportation.setDescription("");
+                typeTransportation.setDistance((Double.parseDouble(request.getParameter("distance" + i))));
+                typeTransportation.setType(request.getParameter("type_transport" + i));
+                typeTransportation.setWeight((Double.parseDouble(request.getParameter("weight" + i))));
+                typeTransportationService.addTypeTransportation(typeTransportation);
 
-            typeTransportation = new TypeTransportation();
-            typeTransportation.setPrice(Double.parseDouble(request.getParameter("price" + i)));
-            typeTransportation.setTime((Double.parseDouble(request.getParameter("time" + i))));
-            typeTransportation.setPercent((Double.parseDouble(request.getParameter("percent" + i))));
-            typeTransportation.setDescription("");
-            typeTransportation.setDistance((Double.parseDouble(request.getParameter("distance" + i))));
-            typeTransportation.setType(request.getParameter("type_transport" + i));
-            typeTransportation.setWeight((Double.parseDouble(request.getParameter("weight" + i))));
-            typeTransportationService.addTypeTransportation(typeTransportation);
-
-            distRoutes = new DistRoutes();
-            distRoutes.setCities(request.getParameter("dist_city" + i));
-            distRoutes.setTypeTransportation(typeTransportation);
-            distRoutes.setRoute(route);
-            distRoutesService.addDistRoutes(distRoutes);
+                distRoutes = new DistRoutes();
+                distRoutes.setCities(request.getParameter("dist_city" + i));
+                distRoutes.setTypeTransportation(typeTransportation);
+                distRoutes.setRoute(route);
+                distRoutesService.addDistRoutes(distRoutes);
+            }
         }
 
 

@@ -160,14 +160,14 @@
                                             <h4>Промежуточный город №1</h4>
                                             <label for="uname"><b>Название города</b></label>
                                             <div class="col-md-6">
-                                                <input type="text"  placeholder="Введите название города: Минск" name="dist_city1" required>
+                                                <input type="text"  placeholder="Введите название города: Минск" name="dist_city1" >
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label for="uname"><b>Вид транспорта и грузоподъёмность</b></label>
                                             <br>
                                             <div class="col-md-8">
-                                                <input type="text" placeholder="Введите грузоподъёмность трансопртного средства в кг" name="weight1"  required>
+                                                <input type="text" placeholder="Введите грузоподъёмность трансопртного средства в кг" name="weight1"  >
                                             </div>
                                             <div class="col-md-4">
                                                 <select name="type_transport1">
@@ -183,22 +183,22 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Дистанция</b></label>
-                                                <input type="text" placeholder="Дистанция" name="distance1"  pattern="^[ 0-9]+$" required>
+                                                <input type="text" placeholder="Дистанция" name="distance1"  pattern="^[ 0-9]+$" >
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Время</b></label>
-                                                <input type="text" placeholder="Введите время доставки в часах" pattern="^[ 0-9]+$" name="time1"  required>
+                                                <input type="text" placeholder="Введите время доставки в часах" pattern="^[ 0-9]+$" name="time1"  >
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Процент</b></label>
-                                                <input type="text" placeholder="Введите процент" name="percent1"  required>
+                                                <input type="text" placeholder="Введите процент" name="percent1"  >
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Цена</b></label>
                                                 <br>
-                                                <input type="text" placeholder="Введите цену доставки" pattern="^[ 0-9]+$" name="price1"  required>
+                                                <input type="text" placeholder="Введите цену доставки" pattern="^[ 0-9]+$" name="price1"  >
                                             </div>
                                         </div>
                                         <br>
@@ -207,14 +207,14 @@
                                             <h4>Промежуточный город №2</h4>
                                             <label for="uname"><b>Название города</b></label>
                                             <div class="col-md-6">
-                                                <input type="text"  placeholder="Введите название города: Минск" name="dist_city2" required>
+                                                <input type="text"  placeholder="Введите название города: Минск" name="dist_city2" >
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label for="uname"><b>Вид транспорта и грузоподъёмность</b></label>
                                             <br>
                                             <div class="col-md-8">
-                                                <input type="text" placeholder="Введите грузоподъёмность трансопртного средства в кг" name="weight2"  required>
+                                                <input type="text" placeholder="Введите грузоподъёмность трансопртного средства в кг" name="weight2"  >
                                             </div>
                                             <div class="col-md-4">
                                                 <select name="type_transport2">
@@ -230,22 +230,22 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Дистанция</b></label>
-                                                <input type="text" placeholder="Дистанция" name="distance2"  pattern="^[ 0-9]+$" required>
+                                                <input type="text" placeholder="Дистанция" name="distance2"  pattern="^[ 0-9]+$" >
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Время</b></label>
-                                                <input type="text" placeholder="Введите время доставки в часах" pattern="^[ 0-9]+$" name="time2"  required>
+                                                <input type="text" placeholder="Введите время доставки в часах" pattern="^[ 0-9]+$" name="time2" >
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Процент</b></label>
-                                                <input type="text" placeholder="Введите процент" name="percent2"  required>
+                                                <input type="text" placeholder="Введите процент" name="percent2"  >
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="uname"><b>Цена</b></label>
                                                 <br>
-                                                <input type="text" placeholder="Введите цену доставки" pattern="^[ 0-9]+$" name="price2"  required>
+                                                <input type="text" placeholder="Введите цену доставки" pattern="^[ 0-9]+$" name="price2"  >
                                             </div>
                                         </div>
                                         <br>
