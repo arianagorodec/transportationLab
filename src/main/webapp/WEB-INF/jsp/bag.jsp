@@ -69,10 +69,10 @@
                             <c:forEach items="${result}" var = "resDeal" >
                                 <tr>
                                     <td>${resDeal.id}</td>
-                                    <td>${resDeal.distRoutes.route.from}-${resDeal.distRoutes.cities}-${resDeal.distRoutes.route.to}</td>
+                                    <td>${resDeal.route.cities}</td>
                                     <td>${resDeal.address_from}</td>
                                     <td>${resDeal.address_to}</td>
-                                    <td>${resDeal.distRoutes.typeTransportation.type}</td>
+                                    <td>${resDeal.route.transports}</td>
                                     <td>${resDeal.size}</td>
                                     <td>${resDeal.weight}</td>
                                     <td>${resDeal.time}</td>
@@ -112,10 +112,10 @@
                         <c:forEach items="${allDeals}" var = "clientDeal" >
                             <tr>
                                 <td>${clientDeal.id}</td>
-                                <td>${clientDeal.distRoutes.route.from}-${clientDeal.distRoutes.cities}-${clientDeal.distRoutes.route.to}</td>
+                                <td>${clientDeal.route.cities}</td>
                                 <td>${clientDeal.address_from}</td>
                                 <td>${clientDeal.address_to}</td>
-                                <td>${clientDeal.distRoutes.typeTransportation.type}</td>
+                                <td>${clientDeal.route.transports}</td>
                                 <td>${clientDeal.size}</td>
                                 <td>${clientDeal.weight}</td>
                                 <td>${clientDeal.time}</td>

@@ -45,8 +45,8 @@ public class Deal {
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY) //orphanRemoval=true
-    @JoinColumn(name = "id_distroute")
-    private DistRoutes distRoutes;
+    @JoinColumn(name = "id_route")
+    private Route route;
 
 //    @OneToOne(optional = false, cascade = CascadeType.ALL)
 //    @JoinColumn(name="id_distroute", unique = false, nullable = false, updatable = false)
@@ -135,12 +135,12 @@ public class Deal {
         this.client = client;
     }
 
-    public DistRoutes getDistRoutes() {
-        return distRoutes;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setDistRoutes(DistRoutes distRoutes) {
-        this.distRoutes = distRoutes;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public String getCity_from() {
@@ -182,7 +182,7 @@ public class Deal {
                 ", city_from='" + city_from + '\'' +
                 ", city_to='" + city_to + '\'' +
                 ", client=" + client +
-                ", distRoutes=" + distRoutes +
+                ", route=" + route +
                 ", typeTransportationList=" + typeTransportationList +
                 '}';
     }

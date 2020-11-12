@@ -109,4 +109,19 @@ public class TypeTransportation {
     public void setWeight(Double weight) {
         this.weight = weight;
     }
+
+    public void setType(String parameter) {
+        if(parameter.equals("TRUCK"))
+            this.type=TransportEnum.TRUCK;
+        else if(parameter.equals("PLANE"))
+            this.type=TransportEnum.PLANE;
+        else if(parameter.equals("TRAIN"))
+            this.type=TransportEnum.TRAIN;
+        else if(parameter.equals("AUTO"))
+            this.type=TransportEnum.AUTO;
+        else if(parameter.equals("SHIP"))
+            this.type=TransportEnum.SHIP;
+        else if(parameter.equals("MIXED"))
+            this.type=TransportEnum.MIXED;
+    }
 }

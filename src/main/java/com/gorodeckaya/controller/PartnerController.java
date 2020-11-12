@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,26 +39,61 @@ public class PartnerController {
         model.addAttribute("surname", partner.getSurname());
         model.addAttribute("mobphone", partner.getMobphone());
         model.addAttribute("email", partner.getEmail());
-        List<DistRoutes> routeList = new ArrayList<>();
+        List<Route> routeList = new ArrayList<>();
         for (Route r: partner.getRoutes()) {
+            String cities = "";
+            String transport = "";
+            String percent = "";
+            Double time = 0.0;
+            Double price = 0.0;
+            cities+=r.getFrom();
+            boolean check = true;
             for (DistRoutes distRoutes: r.getDistRoutes()) {
-                distRoutes.setCities(r.getFrom()+"-"+distRoutes.getCities()+"-"+r.getTo());
-                routeList.add(distRoutes);
+                if(distRoutes.getCities().equals(r.getFrom()) && check){
+                    transport+=distRoutes.getTypeTransportation().getType()+" ";
+                    percent+=distRoutes.getTypeTransportation().getPercent()+" ";
+                    time+= distRoutes.getTypeTransportation().getTime();
+                    price+=distRoutes.getTypeTransportation().getPrice();
+                    check=false;
+                }
+                else {
+                    cities += "-" + distRoutes.getCities();
+                    transport += distRoutes.getTypeTransportation().getType() + " ";
+                    percent += distRoutes.getTypeTransportation().getPercent() + " ";
+                    time += distRoutes.getTypeTransportation().getTime();
+                    price += distRoutes.getTypeTransportation().getPrice();
+                }
             }
+            cities+="-"+r.getTo();
+            r.setCities(cities);
+            r.setTransports(transport);
+            r.setPercent(percent);
+            r.setTime(time);
+            r.setPrice(price);
+            routeList.add(r);
         }
 
-        model.addAttribute("distRoutes",  routeList);
+        model.addAttribute("routes",  routeList);
         return "partner";
     }
     @PostMapping("/partner")
-    public String addRoute(@RequestParam("route") String fullRoute,
+    public String addRoute(@RequestParam("city_from") String city_from,
+                           @RequestParam("city_to") String city_to,
                            @RequestParam("weight") double weight,
                            @RequestParam("type_transport") TransportEnum type,
                            @RequestParam("distance") double distance,
                            @RequestParam("time") double time,
                            @RequestParam("percent") double percent,
                            @RequestParam("price") double price,
+                           HttpServletRequest request,
                            Model model){
+
+        Route route = new Route();
+        route.setFrom(city_from);
+        route.setTo(city_to);
+        route.setPartner(partnerService.getInfoPartner());
+        routeService.addRoute(route);
+
         TypeTransportation typeTransportation = new TypeTransportation();
         typeTransportation.setPrice(price);
         typeTransportation.setTime(time);
@@ -68,30 +104,31 @@ public class PartnerController {
         typeTransportation.setWeight(weight);
         typeTransportationService.addTypeTransportation(typeTransportation);
 
-//        Route route = new Route();
-        String[] cities = fullRoute.split("-");
-        String distroute="";
-        for (int i=1; i<cities.length-1; i++){
-            if(i==cities.length-2){
-                distroute+=cities[i];
-            }
-            else
-                distroute+=cities[i]+"-";
-        }
-        Route route = routeService.getbyFromToIdPartner(cities[0],cities[cities.length-1],partnerService.getInfoPartner().getId());
-        if(route==null) {
-            route = new Route();
-            route.setFrom(cities[0]);
-            route.setTo(cities[cities.length - 1]);
-            route.setPartner(partnerService.getInfoPartner());
-            routeService.addRoute(route);
-        }
-
         DistRoutes distRoutes = new DistRoutes();
-        distRoutes.setCities(distroute);
+        distRoutes.setCities(city_from);
         distRoutes.setTypeTransportation(typeTransportation);
         distRoutes.setRoute(route);
         distRoutesService.addDistRoutes(distRoutes);
+
+        for(int i=1;i<3;i++) {
+
+            typeTransportation = new TypeTransportation();
+            typeTransportation.setPrice(Double.parseDouble(request.getParameter("price" + i)));
+            typeTransportation.setTime((Double.parseDouble(request.getParameter("time" + i))));
+            typeTransportation.setPercent((Double.parseDouble(request.getParameter("percent" + i))));
+            typeTransportation.setDescription("");
+            typeTransportation.setDistance((Double.parseDouble(request.getParameter("distance" + i))));
+            typeTransportation.setType(request.getParameter("type_transport" + i));
+            typeTransportation.setWeight((Double.parseDouble(request.getParameter("weight" + i))));
+            typeTransportationService.addTypeTransportation(typeTransportation);
+
+            distRoutes = new DistRoutes();
+            distRoutes.setCities(request.getParameter("dist_city" + i));
+            distRoutes.setTypeTransportation(typeTransportation);
+            distRoutes.setRoute(route);
+            distRoutesService.addDistRoutes(distRoutes);
+        }
+
 
         return "redirect:/partner";
     }

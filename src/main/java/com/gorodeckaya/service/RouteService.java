@@ -14,4 +14,5 @@ public interface RouteService {
     List<String> getUniqTo();
     List<Route> getAllbyFromTo(String from, String to);
     Route getbyFromToIdPartner(String from, String to, long id);
+    Route findById(long id);
 }

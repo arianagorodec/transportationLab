@@ -80,10 +80,10 @@
                         <c:forEach items="${deals}" var = "deal" >
                         <tr>
                             <th scope="row"></th>
-                            <td>${deal.distRoutes.route.partner.company}</td>
-                            <td>${deal.distRoutes.cities}</td>
-                            <td>${deal.distRoutes.typeTransportation.type}</td>
-                            <td>${deal.distRoutes.typeTransportation.time}</td>
+                            <td>${deal.route.partner.company}</td>
+                            <td>${deal.route.cities}</td>
+                            <td>${deal.route.transports}</td>
+                            <td>${deal.time}</td>
                             <td>${deal.price}</td>
                         </tr>
                         </c:forEach>
@@ -203,12 +203,12 @@
                                                 <input type="text" name="address_from" style="display: none" value="${myDeal.address_from}" readonly>
                                                 <input type="text" name="address_to" style="display: none" value="${myDeal.address_to}" readonly>
                                                 <tr>
-                                                    <th scope="row"><input type="number" name="id" style="outline: none; border: none; background: #f9f9f9;" value="${newDeal.distRoutes.id}" readonly></th>
-                                                    <td>${newDeal.distRoutes.route.partner.company}</td>
-                                                    <td>${newDeal.distRoutes.cities}</td>
+                                                    <th scope="row"><input type="number" name="id" style="outline: none; border: none; background: #f9f9f9;" value="${newDeal.route.id}" readonly></th>
+                                                    <td>${newDeal.route.partner.company}</td>
+                                                    <td>${newDeal.route.cities}</td>
                                                     <td>${newDeal.address_from}</td>
                                                     <td>${newDeal.address_to}</td>
-                                                    <td>${newDeal.distRoutes.typeTransportation.type}</td>
+                                                    <td>${newDeal.route.transports}</td>
                                                     <td>${newDeal.size}</td>
                                                     <td>${newDeal.weight}</td>
                                                     <td>${newDeal.time}</td>

@@ -27,8 +27,6 @@ public class DistRoutes {
     @JoinColumn(name="id_typetranspotation", unique = false, nullable = false, updatable = false)
     private TypeTransportation typeTransportation;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "distRoutes", cascade = CascadeType.ALL)
-    private Set<Deal> deals;
 
     public DistRoutes() {
     }
@@ -66,13 +64,6 @@ public class DistRoutes {
         this.typeTransportation = typeTransportation;
     }
 
-    public Set<Deal> getDeals() {
-        return deals;
-    }
-
-    public void setDeals(Set<Deal> deals) {
-        this.deals = deals;
-    }
 
     @Override
     public String toString() {

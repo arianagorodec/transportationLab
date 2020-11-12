@@ -73,7 +73,7 @@ public class Backpack {
         for (int i = 0; i < items.size(); i++)
         {
             List<Deal> newSet = new ArrayList<>(items);
-
+            System.out.println("2"+newSet);
             newSet.remove(i);
 
             makeAllSets(newSet);

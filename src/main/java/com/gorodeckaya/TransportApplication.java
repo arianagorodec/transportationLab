@@ -1,6 +1,7 @@
 package com.gorodeckaya;
 
 import com.gorodeckaya.entity.Deal;
+import com.gorodeckaya.entity.TypeTransportation;
 import com.gorodeckaya.entity.enums.TransportEnum;
 import com.gorodeckaya.entity.enums.TypeGoodsEnum;
 import com.gorodeckaya.logic.FindRoute;
@@ -14,10 +15,6 @@ import java.util.List;
 
 @SpringBootApplication
 public class TransportApplication {
-
-	@Autowired
-	RouteServiceImpl routeService;
-
 	public static void main(String[] args) {
 		SpringApplication.run(TransportApplication.class, args);
 	}

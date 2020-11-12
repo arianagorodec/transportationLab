@@ -2,7 +2,9 @@ package com.gorodeckaya.controller;
 
 import com.gorodeckaya.entity.Backpack;
 import com.gorodeckaya.entity.Deal;
+import com.gorodeckaya.entity.DistRoutes;
 import com.gorodeckaya.entity.Partner;
+import com.gorodeckaya.entity.enums.TransportEnum;
 import com.gorodeckaya.service.impl.DealServiceImpl;
 import com.gorodeckaya.service.impl.PartnerServiceImpl;
 
@@ -50,10 +52,25 @@ public class BagController {
     }
 
     private static List<Deal> calculate(List<Deal> deals) {
+        for (Deal fullDeal: deals){
+            String cities = "";
+            TransportEnum transportEnum = ClientController.defineTypeTransportation(fullDeal.getRoute().getDistRoutes());
+            fullDeal.getRoute().setTransports(transportEnum.toString());
+            boolean check = true;
+            cities+=fullDeal.getCity_from()+"-";
+            for(DistRoutes distRoutes: fullDeal.getRoute().getDistRoutes()) {
+                if(distRoutes.getCities().equals(fullDeal.getCity_from()) && check)
+                    check=false;
+                else
+                    cities += distRoutes.getCities() + "-";
+            }
+            cities+=fullDeal.getCity_to();
+            fullDeal.getRoute().setCities(cities);
+        }
         Comparator<Deal> comparator = new Comparator<Deal>() {
             @Override
             public int compare(Deal deal, Deal deal1) {
-                return deal.getDistRoutes().getCities().compareTo(deal1.getDistRoutes().getCities());
+                return deal.getRoute().getCities().compareTo(deal1.getRoute().getCities());
             }
         };
         deals.sort(comparator);
@@ -61,12 +78,12 @@ public class BagController {
         List<Deal> dealList = new ArrayList<>();
         List<List<Deal>> allResultList = new ArrayList<>();
         for (Deal i: deals) {
-            if(i.getDistRoutes().getCities().equals(deal.getDistRoutes().getCities())) {
+            if(i.getRoute().getCities().equals(deal.getRoute().getCities())) {
                 dealList.add(i);
             }
             else {
                 dealList.add(i);
-                Backpack backpack = new Backpack(deal.getDistRoutes().getTypeTransportation().getWeight());
+                Backpack backpack = new Backpack(minWeightOnRoute(i));
                 backpack.makeAllSets(dealList);
                 allResultList.add(backpack.GetBestSet());
                 deal = i;
@@ -74,6 +91,9 @@ public class BagController {
                 dealList.add(i);
             }
         }
+        Backpack backpack = new Backpack(minWeightOnRoute(deal));
+        backpack.makeAllSets(dealList);
+        allResultList.add(backpack.GetBestSet());
         List<Deal> resultList = maxPriceDeal(allResultList);
         return resultList;
     }
@@ -99,6 +119,17 @@ public class BagController {
                 maxPrice+=d.getPrice();
             }
         return maxPrice;
+    }
+
+    private static double minWeightOnRoute(Deal deal) {
+        double minWeight = 0;
+        for (DistRoutes d: deal.getRoute().getDistRoutes()){
+            double weight = d.getTypeTransportation().getWeight();
+            if(minWeight<weight) {
+                minWeight = weight;
+            }
+        }
+        return minWeight;
     }
 
 

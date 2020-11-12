@@ -31,6 +31,19 @@ public class Route {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "route", cascade = CascadeType.ALL)
     private Set<DistRoutes> distRoutes;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "route", cascade = CascadeType.ALL)
+    private Set<Deal> deals;
+
+    @Transient
+    private String transports;
+    @Transient
+    private String cities;
+    @Transient
+    private Double time;
+    @Transient
+    private Double price;
+    @Transient
+    private String percent;
 
     public long getId() {
         return id;
@@ -70,5 +83,53 @@ public class Route {
 
     public void setDistRoutes(Set<DistRoutes> distRoutes) {
         this.distRoutes = distRoutes;
+    }
+
+    public String getTransports() {
+        return transports;
+    }
+
+    public void setTransports(String transports) {
+        this.transports = transports;
+    }
+
+    public String getCities() {
+        return cities;
+    }
+
+    public void setCities(String cities) {
+        this.cities = cities;
+    }
+
+    public Double getTime() {
+        return time;
+    }
+
+    public void setTime(Double time) {
+        this.time = time;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getPercent() {
+        return percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent = percent;
+    }
+
+    public Set<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(Set<Deal> deals) {
+        this.deals = deals;
     }
 }

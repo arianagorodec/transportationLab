@@ -18,6 +18,11 @@ public class RouteServiceImpl implements RouteService {
     private RouteRepository routeRepository;
 
     @Override
+    public Route findById(long id) {
+        return routeRepository.findById(id);
+    }
+
+    @Override
     public Route addRoute(Route route) {
         return routeRepository.saveAndFlush(route);
     }
